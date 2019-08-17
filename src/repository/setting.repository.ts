@@ -1,19 +1,16 @@
-import {ConnectionOptions, createConnection} from 'typeorm'
+import {Connection, getConnection} from 'typeorm'
 
 import {Setting} from '../entities/setting'
 
 export class SettingRepository {
-  private options: ConnectionOptions = {
-    type: 'sqlite',
-    database: '/Users/cristiam/.m2/msa/msa.db',
-    entities: [Setting],
-    logging: false
+  private connection: Connection
+
+  constructor() {
+    this.connection = getConnection()
   }
 
   async findAllSettings() {
-    const connection = await createConnection(this.options)
-    const settingRepository = connection.getRepository(Setting)
-    return settingRepository.find()
+    return this.connection.manager.find(Setting)
   }
 
 }
