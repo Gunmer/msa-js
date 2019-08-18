@@ -3,7 +3,7 @@ import {Connection, getConnection} from 'typeorm'
 import {Setting} from '../entities/setting'
 
 export class SettingRepository {
-  private connection: Connection
+  private readonly connection: Connection
 
   constructor() {
     this.connection = getConnection()

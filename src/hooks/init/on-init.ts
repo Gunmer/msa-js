@@ -1,18 +1,26 @@
 import {Hook} from '@oclif/config'
-import {getConnectionManager} from 'typeorm'
+import {Connection, getConnectionManager} from 'typeorm'
 
 import {Setting} from '../../entities/setting'
 
 const hook: Hook<'init'> = async function () {
   const connectionManager = getConnectionManager()
-  const connection = connectionManager.create({
-    type: 'sqlite',
-    database: `${this.config.home}/.m2/msa/msa.db`,
-    entities: [Setting],
-    logging: false
-  })
+  let connection: Connection
 
-  await connection.connect()
+  if (connectionManager.has('default')) {
+    connection = connectionManager.get('default')
+  } else {
+    connection = connectionManager.create({
+      type: 'sqlite',
+      database: `${this.config.home}/.m2/msa/msa.db`,
+      entities: [Setting],
+      logging: false
+    })
+  }
+
+  if (!connection.isConnected) {
+    await connection.connect()
+  }
 }
 
 export default hook

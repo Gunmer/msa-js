@@ -15,49 +15,41 @@ maven settings administrator
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g msa-js
-$ msa-js COMMAND
+$ npm install -g msa
+$ msa COMMAND
 running command...
-$ msa-js (-v|--version|version)
-msa-js/0.0.0 darwin-x64 node-v12.7.0
-$ msa-js --help [COMMAND]
+$ msa (-v|--version|version)
+msa/0.0.0 darwin-x64 node-v12.7.0
+$ msa --help [COMMAND]
 USAGE
-  $ msa-js COMMAND
+  $ msa COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`msa-js hello [FILE]`](#msa-js-hello-file)
-* [`msa-js help [COMMAND]`](#msa-js-help-command)
+* [`msa hello`](#msa-hello)
+* [`msa help [COMMAND]`](#msa-help-command)
+* [`msa list [FILE]`](#msa-list-file)
 
-## `msa-js hello [FILE]`
+## `msa hello`
 
 describe the command here
 
 ```
 USAGE
-  $ msa-js hello [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-
-EXAMPLE
-  $ msa-js hello
-  hello world from ./src/hello.ts!
+  $ msa hello
 ```
 
 _See code: [src/commands/hello.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/hello.ts)_
 
-## `msa-js help [COMMAND]`
+## `msa help [COMMAND]`
 
-display help for msa-js
+display help for msa
 
 ```
 USAGE
-  $ msa-js help [COMMAND]
+  $ msa help [COMMAND]
 
 ARGUMENTS
   COMMAND  command to show help for
@@ -67,4 +59,20 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.1/src/commands/help.ts)_
+
+## `msa list [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ msa list [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/list.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/list.ts)_
 <!-- commandsstop -->
