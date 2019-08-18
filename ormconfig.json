@@ -1,0 +1,14 @@
+{
+  "type": "sqlite",
+  "database": "~/.m2/msa/msa.db",
+  "entities": [
+    "src/entities/*.ts"
+  ],
+  "migrations": [
+    "src/migrations/*.ts"
+  ],
+  "cli": {
+    "entitiesDir": "src/entities",
+    "migrationsDir": "src/migrations"
+  }
+}
