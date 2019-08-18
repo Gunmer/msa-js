@@ -15,11 +15,11 @@ maven settings administrator
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g msa
+$ npm install -g msa-js
 $ msa COMMAND
 running command...
 $ msa (-v|--version|version)
-msa/1.0.0 darwin-x64 node-v12.7.0
+msa-js/1.0.0 darwin-x64 node-v12.7.0
 $ msa --help [COMMAND]
 USAGE
   $ msa COMMAND

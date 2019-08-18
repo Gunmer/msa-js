@@ -11,8 +11,8 @@ const hook: Hook<'init'> = async function () {
     connection = connectionManager.create({
       type: 'sqlite',
       database: `${this.config.home}/.m2/msa/msa.db`,
-      entities: ['**/entities/*.ts'],
-      migrations: ['**/migrations/*.ts'],
+      entities: ['**/entities/*.*'],
+      migrations: ['**/migrations/*.*'],
       logging: false,
       migrationsTableName: 'migrations',
       migrationsRun: true
