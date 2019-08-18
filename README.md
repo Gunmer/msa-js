@@ -28,20 +28,9 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`msa hello`](#msa-hello)
 * [`msa help [COMMAND]`](#msa-help-command)
-* [`msa list [FILE]`](#msa-list-file)
-
-## `msa hello`
-
-describe the command here
-
-```
-USAGE
-  $ msa hello
-```
-
-_See code: [src/commands/hello.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/hello.ts)_
+* [`msa list`](#msa-list)
+* [`msa use [FILE]`](#msa-use-file)
 
 ## `msa help [COMMAND]`
 
@@ -60,13 +49,30 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.1/src/commands/help.ts)_
 
-## `msa list [FILE]`
+## `msa list`
+
+Show a list of settings
+
+```
+USAGE
+  $ msa list
+
+OPTIONS
+  -h, --help
+
+ALIASES
+  $ msa ls
+```
+
+_See code: [src/commands/list.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/list.ts)_
+
+## `msa use [FILE]`
 
 describe the command here
 
 ```
 USAGE
-  $ msa list [FILE]
+  $ msa use [FILE]
 
 OPTIONS
   -f, --force
@@ -74,5 +80,5 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src/commands/list.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/list.ts)_
+_See code: [src/commands/use.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/use.ts)_
 <!-- commandsstop -->

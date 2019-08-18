@@ -1,16 +1,19 @@
-import {Connection, getConnection} from 'typeorm'
+import {EntityRepository, Repository} from 'typeorm'
 
 import {Setting} from '../entities/setting'
+import {SettingNotFoundError} from '../errors/setting-not-found.error'
 
-export class SettingRepository {
-  private readonly connection: Connection
-
-  constructor() {
-    this.connection = getConnection()
+@EntityRepository(Setting)
+export class SettingRepository extends Repository<Setting> {
+  async findOneByName(settingName: string) {
+    try {
+      return await this.findOneOrFail({name: settingName})
+    } catch {
+      throw new SettingNotFoundError(settingName)
+    }
   }
 
-  async findAllSettings() {
-    return this.connection.manager.find(Setting)
+  async findSelected() {
+    return this.findOne({selected: 1})
   }
-
 }

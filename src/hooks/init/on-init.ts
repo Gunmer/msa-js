@@ -14,7 +14,7 @@ const hook: Hook<'init'> = async function () {
       type: 'sqlite',
       database: `${this.config.home}/.m2/msa/msa.db`,
       entities: [Setting],
-      logging: false
+      logging: true
     })
   }
 

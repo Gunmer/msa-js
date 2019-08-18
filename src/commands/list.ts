@@ -1,30 +1,28 @@
 import {Command, flags} from '@oclif/command'
+import {getCustomRepository} from 'typeorm'
 
 import {SettingRepository} from '../repository/setting.repository'
 
 export default class List extends Command {
   static description = 'Show a list of settings'
   static aliases = ['ls']
-  static flags = {help: flags.boolean({char: 'h'})}
+  static flags = {help: flags.help({char: 'h'})}
 
-  private readonly settingsRepository = new SettingRepository()
+  private readonly settingsRepository = getCustomRepository(SettingRepository)
 
   async run() {
-    const parse = this.parse(List)
+    this.parse(List)
 
-    if (parse.flags.help) {
-      this._help()
-      return
-    }
-
-    const settings = await this.settingsRepository.findAllSettings()
+    const settings = await this.settingsRepository.find()
 
     settings.forEach(s => {
-      if (s.isSelected === 0) {
-        this.log(`   ${s.name}`)
-      } else {
+      if (s.isSelected()) {
         this.log(` > ${s.name}`)
+      } else {
+        this.log(`   ${s.name}`)
       }
     })
+
+    this.exit()
   }
 }
