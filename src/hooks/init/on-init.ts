@@ -1,6 +1,10 @@
 import {Hook} from '@oclif/config'
 import {Connection, getConnectionManager} from 'typeorm'
 
+import {Setting} from '../../entities/setting'
+import {Migration1566161944888} from '../../migrations/1566161944888-Migration'
+import {Migration1566162184523} from '../../migrations/1566162184523-Migration'
+
 const hook: Hook<'init'> = async function () {
   const connectionManager = getConnectionManager()
   let connection: Connection
@@ -11,9 +15,12 @@ const hook: Hook<'init'> = async function () {
     connection = connectionManager.create({
       type: 'sqlite',
       database: `${this.config.home}/.m2/msa/msa.db`,
-      entities: ['**/entities/*.*'],
-      migrations: ['**/migrations/*.*'],
-      logging: false,
+      entities: [Setting],
+      migrations: [
+        Migration1566161944888,
+        Migration1566162184523,
+      ],
+      logging: this.config.debug === 1,
       migrationsTableName: 'migrations',
       migrationsRun: true
     })
