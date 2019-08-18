@@ -19,7 +19,7 @@ $ npm install -g msa
 $ msa COMMAND
 running command...
 $ msa (-v|--version|version)
-msa/0.0.0 darwin-x64 node-v12.7.0
+msa/1.0.0 darwin-x64 node-v12.7.0
 $ msa --help [COMMAND]
 USAGE
   $ msa COMMAND
@@ -30,7 +30,7 @@ USAGE
 <!-- commands -->
 * [`msa add NAME FILE`](#msa-add-name-file)
 * [`msa delete SETTING`](#msa-delete-setting)
-* [`msa doctor [FILE]`](#msa-doctor-file)
+* [`msa doctor`](#msa-doctor)
 * [`msa help [COMMAND]`](#msa-help-command)
 * [`msa list`](#msa-list)
 * [`msa use SETTING`](#msa-use-setting)
@@ -54,7 +54,7 @@ ALIASES
   $ msa a
 ```
 
-_See code: [src/commands/add.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/add.ts)_
+_See code: [src/commands/add.ts](https://github.com/Gunmer/msa-js/blob/v1.0.0/src/commands/add.ts)_
 
 ## `msa delete SETTING`
 
@@ -74,23 +74,22 @@ ALIASES
   $ msa d
 ```
 
-_See code: [src/commands/delete.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/delete.ts)_
+_See code: [src/commands/delete.ts](https://github.com/Gunmer/msa-js/blob/v1.0.0/src/commands/delete.ts)_
 
-## `msa doctor [FILE]`
+## `msa doctor`
 
-describe the command here
+Tool for diagnostic and fix some issues
 
 ```
 USAGE
-  $ msa doctor [FILE]
+  $ msa doctor
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -f, --fix
+  -h, --help  show CLI help
 ```
 
-_See code: [src/commands/doctor.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/doctor.ts)_
+_See code: [src/commands/doctor.ts](https://github.com/Gunmer/msa-js/blob/v1.0.0/src/commands/doctor.ts)_
 
 ## `msa help [COMMAND]`
 
@@ -124,7 +123,7 @@ ALIASES
   $ msa ls
 ```
 
-_See code: [src/commands/list.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/list.ts)_
+_See code: [src/commands/list.ts](https://github.com/Gunmer/msa-js/blob/v1.0.0/src/commands/list.ts)_
 
 ## `msa use SETTING`
 
@@ -144,5 +143,5 @@ ALIASES
   $ msa u
 ```
 
-_See code: [src/commands/use.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/use.ts)_
+_See code: [src/commands/use.ts](https://github.com/Gunmer/msa-js/blob/v1.0.0/src/commands/use.ts)_
 <!-- commandsstop -->
