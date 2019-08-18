@@ -9,6 +9,7 @@ export class FileService {
   constructor(
     private readonly home: string,
     private readonly settingPath = `${home}/.m2/settings.xml`,
+    private readonly msaHome = `${home}/.m2/msa`
   ) {
   }
 
@@ -35,10 +36,16 @@ export class FileService {
       return
     }
 
-    fs.unlinkSync(this.settingPath)
+    this.deleteSelectedSetting()
   }
 
-  deleteSettings(setting: Setting) {
+  deleteSelectedSetting() {
+    if (fs.existsSync(this.settingPath)) {
+      fs.unlinkSync(this.settingPath)
+    }
+  }
+
+  deleteStoredSettings(setting: Setting) {
     if (setting.isSelected()) {
       throw new CanNotDeleteSelectedError()
     }
@@ -48,5 +55,10 @@ export class FileService {
 
     const settingFilePath = `${this.home}/.m2/msa/${setting.file}`
     fs.unlinkSync(settingFilePath)
+  }
+
+  getAllSettingFiles() {
+    return fs.readdirSync(this.msaHome)
+      .filter(file => file !== 'msa.db')
   }
 }

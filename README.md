@@ -29,7 +29,8 @@ USAGE
 # Commands
 <!-- commands -->
 * [`msa add NAME FILE`](#msa-add-name-file)
-* [`msa delete [FILE]`](#msa-delete-file)
+* [`msa delete SETTING`](#msa-delete-setting)
+* [`msa doctor [FILE]`](#msa-doctor-file)
 * [`msa help [COMMAND]`](#msa-help-command)
 * [`msa list`](#msa-list)
 * [`msa use SETTING`](#msa-use-setting)
@@ -48,17 +49,40 @@ ARGUMENTS
 
 OPTIONS
   -h, --help  show CLI help
+
+ALIASES
+  $ msa a
 ```
 
 _See code: [src/commands/add.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/add.ts)_
 
-## `msa delete [FILE]`
+## `msa delete SETTING`
+
+Delete a setting
+
+```
+USAGE
+  $ msa delete SETTING
+
+ARGUMENTS
+  SETTING  Select setting for delete
+
+OPTIONS
+  -h, --help  show CLI help
+
+ALIASES
+  $ msa d
+```
+
+_See code: [src/commands/delete.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/delete.ts)_
+
+## `msa doctor [FILE]`
 
 describe the command here
 
 ```
 USAGE
-  $ msa delete [FILE]
+  $ msa doctor [FILE]
 
 OPTIONS
   -f, --force
@@ -66,7 +90,7 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src/commands/delete.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/delete.ts)_
+_See code: [src/commands/doctor.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/doctor.ts)_
 
 ## `msa help [COMMAND]`
 

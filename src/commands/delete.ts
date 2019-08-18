@@ -21,7 +21,7 @@ export default class Delete extends Command {
     const parse = this.parse(Delete)
 
     const setting = await this.settingRepository.findOneByName(parse.args.setting)
-    this.fileService.deleteSettings(setting)
+    this.fileService.deleteStoredSettings(setting)
     await this.settingRepository.remove(setting)
 
     this.log(`The ${parse.args.setting} setting was deleted`)

@@ -26,4 +26,12 @@ export class SettingRepository extends Repository<Setting> {
 
     return !!setting
   }
+
+  async addDefault() {
+    const defaultSetting = new Setting('default')
+    defaultSetting.file = ''
+    defaultSetting.select()
+
+    return this.save(defaultSetting)
+  }
 }

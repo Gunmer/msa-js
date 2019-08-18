@@ -2,6 +2,8 @@ import {Column, Entity, PrimaryColumn} from 'typeorm'
 
 @Entity('settings')
 export class Setting {
+  static DEFAULT = new Setting('default', '', 1)
+
   @PrimaryColumn({name: 'name', type: 'text'})
   name: string
   @Column({name: 'file', type: 'text'})
