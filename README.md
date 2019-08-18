@@ -28,9 +28,26 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`msa add [FILE]`](#msa-add-file)
 * [`msa help [COMMAND]`](#msa-help-command)
 * [`msa list`](#msa-list)
-* [`msa use [FILE]`](#msa-use-file)
+* [`msa use SETTING`](#msa-use-setting)
+
+## `msa add [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ msa add [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/add.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/add.ts)_
 
 ## `msa help [COMMAND]`
 
@@ -58,7 +75,7 @@ USAGE
   $ msa list
 
 OPTIONS
-  -h, --help
+  -h, --help  show CLI help
 
 ALIASES
   $ msa ls
@@ -66,18 +83,19 @@ ALIASES
 
 _See code: [src/commands/list.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/list.ts)_
 
-## `msa use [FILE]`
+## `msa use SETTING`
 
-describe the command here
+Select the setting to use
 
 ```
 USAGE
-  $ msa use [FILE]
+  $ msa use SETTING
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -h, --help  show CLI help
+
+ALIASES
+  $ msa u
 ```
 
 _See code: [src/commands/use.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/use.ts)_

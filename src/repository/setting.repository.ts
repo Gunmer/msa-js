@@ -1,6 +1,7 @@
 import {EntityRepository, Repository} from 'typeorm'
 
 import {Setting} from '../entities/setting'
+import {SettingAlreadyExistError} from '../errors/setting-already-exist.error'
 import {SettingNotFoundError} from '../errors/setting-not-found.error'
 
 @EntityRepository(Setting)
@@ -15,5 +16,14 @@ export class SettingRepository extends Repository<Setting> {
 
   async findSelected() {
     return this.findOne({selected: 1})
+  }
+
+  async checkIfExistByName(settingName: string) {
+    const setting = await this.findOne({name: settingName})
+    if (setting) {
+      throw new SettingAlreadyExistError(settingName)
+    }
+
+    return !!setting
   }
 }

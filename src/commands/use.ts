@@ -9,6 +9,7 @@ export default class Use extends Command {
   static args = [{
     name: 'setting',
     required: true,
+    description: 'Select setting for use'
   }]
   static flags = {
     help: flags.help({char: 'h'}),
