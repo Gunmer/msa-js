@@ -1,6 +1,8 @@
 import * as fs from 'fs'
 
 import {Setting} from '../entities/setting'
+import {CanNotDeleteDefaultError} from '../errors/can-not-delete-default.error'
+import {CanNotDeleteSelectedError} from '../errors/can-not-delete-selected.error'
 import {FileNotFoundError} from '../errors/file-not-found.error'
 
 export class FileService {
@@ -12,8 +14,8 @@ export class FileService {
 
   createSetting(newSetting: Setting, pathFile: string) {
     try {
-      const destinationFilePath = `${this.home}/.m2/msa/${newSetting.file}`
-      fs.copyFileSync(pathFile, destinationFilePath)
+      const settingFilePath = `${this.home}/.m2/msa/${newSetting.file}`
+      fs.copyFileSync(pathFile, settingFilePath)
     } catch {
       throw new FileNotFoundError(pathFile)
     }
@@ -24,8 +26,8 @@ export class FileService {
       return
     }
 
-    const originFilePath = `${this.home}/.m2/msa/${newSetting.file}`
-    fs.copyFileSync(originFilePath, this.settingPath)
+    const settingFilePath = `${this.home}/.m2/msa/${newSetting.file}`
+    fs.copyFileSync(settingFilePath, this.settingPath)
   }
 
   deactivateSetting(oldSetting: Setting) {
@@ -34,5 +36,17 @@ export class FileService {
     }
 
     fs.unlinkSync(this.settingPath)
+  }
+
+  deleteSettings(setting: Setting) {
+    if (setting.isSelected()) {
+      throw new CanNotDeleteSelectedError()
+    }
+    if (setting.isDefault()) {
+      throw new CanNotDeleteDefaultError()
+    }
+
+    const settingFilePath = `${this.home}/.m2/msa/${setting.file}`
+    fs.unlinkSync(settingFilePath)
   }
 }

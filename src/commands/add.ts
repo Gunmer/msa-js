@@ -14,6 +14,7 @@ export default class Add extends Command {
     {name: 'name', required: true, description: 'Name of setting'},
     {name: 'file', required: true, description: 'Path of setting file'},
   ]
+  static aliases = ['a']
 
   private readonly settingRepository = getCustomRepository(SettingRepository)
   private readonly fileService = new FileService(this.config.home)
@@ -27,5 +28,8 @@ export default class Add extends Command {
 
     this.fileService.createSetting(setting, parse.args.file)
     await this.settingRepository.save(setting)
+
+    this.log(`The ${setting.name} setting was created`)
+    this.exit()
   }
 }

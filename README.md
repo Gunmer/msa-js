@@ -28,18 +28,37 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`msa add [FILE]`](#msa-add-file)
+* [`msa add NAME FILE`](#msa-add-name-file)
+* [`msa delete [FILE]`](#msa-delete-file)
 * [`msa help [COMMAND]`](#msa-help-command)
 * [`msa list`](#msa-list)
 * [`msa use SETTING`](#msa-use-setting)
 
-## `msa add [FILE]`
+## `msa add NAME FILE`
+
+Add a new setting
+
+```
+USAGE
+  $ msa add NAME FILE
+
+ARGUMENTS
+  NAME  Name of setting
+  FILE  Path of setting file
+
+OPTIONS
+  -h, --help  show CLI help
+```
+
+_See code: [src/commands/add.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/add.ts)_
+
+## `msa delete [FILE]`
 
 describe the command here
 
 ```
 USAGE
-  $ msa add [FILE]
+  $ msa delete [FILE]
 
 OPTIONS
   -f, --force
@@ -47,7 +66,7 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src/commands/add.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/add.ts)_
+_See code: [src/commands/delete.ts](https://github.com/Gunmer/msa-js/blob/v0.0.0/src/commands/delete.ts)_
 
 ## `msa help [COMMAND]`
 
@@ -90,6 +109,9 @@ Select the setting to use
 ```
 USAGE
   $ msa use SETTING
+
+ARGUMENTS
+  SETTING  Select setting for use
 
 OPTIONS
   -h, --help  show CLI help
