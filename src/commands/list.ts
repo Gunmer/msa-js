@@ -1,9 +1,10 @@
-import {Command, flags} from '@oclif/command'
+import {flags} from '@oclif/command'
 import {getCustomRepository} from 'typeorm'
 
+import Command from '../base'
 import {SettingRepository} from '../repository/setting.repository'
 
-export default class List extends Command {
+export class List extends Command {
   static description = 'Show a list of settings'
   static aliases = ['ls']
   static flags = {help: flags.help({char: 'h'})}
@@ -15,6 +16,8 @@ export default class List extends Command {
 
     const settings = await this.settingsRepository.find()
 
+    this.outputService.stopSpinner()
+
     settings.forEach(s => {
       if (s.isSelected()) {
         this.log(` > ${s.name}`)
@@ -22,7 +25,5 @@ export default class List extends Command {
         this.log(`   ${s.name}`)
       }
     })
-
-    this.exit()
   }
 }

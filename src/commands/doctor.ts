@@ -1,11 +1,12 @@
-import {Command, flags} from '@oclif/command'
+import {flags} from '@oclif/command'
 import {getCustomRepository} from 'typeorm'
 
+import Command from '../base'
 import {Setting} from '../entities/setting'
+import {getFileService} from '../msa-js'
 import {SettingRepository} from '../repository/setting.repository'
-import {FileService} from '../services/file.service'
 
-export default class Doctor extends Command {
+export class Doctor extends Command {
   static description = 'Tool for diagnostic and fix some issues'
   static flags = {
     help: flags.help({char: 'h'}),
@@ -13,7 +14,7 @@ export default class Doctor extends Command {
   }
 
   private readonly settingRepository = getCustomRepository(SettingRepository)
-  private readonly fileService = new FileService(this.config.home)
+  private readonly fileService = getFileService(this.config.home)
 
   async run() {
     const parse = this.parse(Doctor)
@@ -24,12 +25,12 @@ export default class Doctor extends Command {
     const selectedSettings = settings.filter(s => s.isSelected())
     const hasOnlyOneSettingSelected = selectedSettings.length <= 1
     if (!hasOnlyOneSettingSelected) {
-      this.warn('There is more than one settings selected')
+      this.outputService.warning('There is more than one settings selected')
     }
 
     const allSettingsHasFile = settings.every(setting => this.hasFile(setting, files))
     if (!allSettingsHasFile) {
-      this.warn('There are settings without a file')
+      this.outputService.warning('There are settings without a file')
     }
 
     if (parse.flags.fix) {
@@ -40,14 +41,12 @@ export default class Doctor extends Command {
       await this.settingRepository.clear()
       await this.settingRepository.save(newSettings)
 
-      this.log('Data base has restored')
+      this.outputService.info('Data base has restored')
     }
 
     if (hasOnlyOneSettingSelected && allSettingsHasFile && !parse.flags.fix) {
-      this.log('Everything is fine!!!')
+      this.outputService.success('Everything is fine!!!')
     }
-
-    this.exit()
   }
 
   // noinspection JSMethodCanBeStatic

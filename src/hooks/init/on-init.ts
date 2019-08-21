@@ -4,8 +4,12 @@ import {Connection, getConnectionManager} from 'typeorm'
 import {Setting} from '../../entities/setting'
 import {Migration1566161944888} from '../../migrations/1566161944888-Migration'
 import {Migration1566162184523} from '../../migrations/1566162184523-Migration'
+import {getOutputService} from '../../msa-js'
 
 const hook: Hook<'init'> = async function () {
+  const outputService = getOutputService()
+  outputService.startSpinner()
+
   const connectionManager = getConnectionManager()
   let connection: Connection
 

@@ -1,10 +1,11 @@
-import {Command, flags} from '@oclif/command'
+import {flags} from '@oclif/command'
 import {getCustomRepository} from 'typeorm'
 
+import Command from '../base'
+import {getFileService} from '../msa-js'
 import {SettingRepository} from '../repository/setting.repository'
-import {FileService} from '../services/file.service'
 
-export default class Delete extends Command {
+export class Delete extends Command {
   static description = 'Delete a setting'
   static flags = {
     help: flags.help({char: 'h'}),
@@ -15,7 +16,7 @@ export default class Delete extends Command {
   static aliases = ['d']
 
   private readonly settingRepository = getCustomRepository(SettingRepository)
-  private readonly fileService = new FileService(this.config.home)
+  private readonly fileService = getFileService(this.config.home)
 
   async run() {
     const parse = this.parse(Delete)
@@ -24,7 +25,6 @@ export default class Delete extends Command {
     this.fileService.deleteStoredSettings(setting)
     await this.settingRepository.remove(setting)
 
-    this.log(`The ${parse.args.setting} setting was deleted`)
-    this.exit()
+    this.outputService.success(`The ${parse.args.setting} setting was deleted`)
   }
 }

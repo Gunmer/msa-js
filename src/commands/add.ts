@@ -1,11 +1,12 @@
-import {Command, flags} from '@oclif/command'
+import {flags} from '@oclif/command'
 import {getCustomRepository} from 'typeorm'
 
+import Command from '../base'
 import {Setting} from '../entities/setting'
+import {getFileService} from '../msa-js'
 import {SettingRepository} from '../repository/setting.repository'
-import {FileService} from '../services/file.service'
 
-export default class Add extends Command {
+export class Add extends Command {
   static description = 'Add a new setting'
   static flags = {
     help: flags.help({char: 'h'}),
@@ -17,7 +18,7 @@ export default class Add extends Command {
   static aliases = ['a']
 
   private readonly settingRepository = getCustomRepository(SettingRepository)
-  private readonly fileService = new FileService(this.config.home)
+  private readonly fileService = getFileService(this.config.home)
 
   async run() {
     const parse = this.parse(Add)
@@ -29,7 +30,6 @@ export default class Add extends Command {
     this.fileService.createSetting(setting, parse.args.file)
     await this.settingRepository.save(setting)
 
-    this.log(`The ${setting.name} setting was created`)
-    this.exit()
+    this.outputService.success(`The ${setting.name} setting was created`)
   }
 }
