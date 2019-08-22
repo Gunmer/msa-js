@@ -19,7 +19,7 @@ $ npm install -g msa-js
 $ msa COMMAND
 running command...
 $ msa (-v|--version|version)
-msa-js/1.2.1 darwin-x64 node-v12.7.0
+msa-js/1.2.2 darwin-x64 node-v12.7.0
 $ msa --help [COMMAND]
 USAGE
   $ msa COMMAND
@@ -33,7 +33,6 @@ USAGE
 * [`msa doctor`](#msa-doctor)
 * [`msa help [COMMAND]`](#msa-help-command)
 * [`msa list`](#msa-list)
-* [`msa update [CHANNEL]`](#msa-update-channel)
 * [`msa use SETTING`](#msa-use-setting)
 
 ## `msa add NAME FILE`
@@ -55,7 +54,7 @@ ALIASES
   $ msa a
 ```
 
-_See code: [src/commands/add.ts](https://github.com/Gunmer/msa-js/blob/v1.2.1/src/commands/add.ts)_
+_See code: [src/commands/add.ts](https://github.com/Gunmer/msa-js/blob/v1.2.2/src/commands/add.ts)_
 
 ## `msa delete SETTING`
 
@@ -75,7 +74,7 @@ ALIASES
   $ msa d
 ```
 
-_See code: [src/commands/delete.ts](https://github.com/Gunmer/msa-js/blob/v1.2.1/src/commands/delete.ts)_
+_See code: [src/commands/delete.ts](https://github.com/Gunmer/msa-js/blob/v1.2.2/src/commands/delete.ts)_
 
 ## `msa doctor`
 
@@ -90,7 +89,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/doctor.ts](https://github.com/Gunmer/msa-js/blob/v1.2.1/src/commands/doctor.ts)_
+_See code: [src/commands/doctor.ts](https://github.com/Gunmer/msa-js/blob/v1.2.2/src/commands/doctor.ts)_
 
 ## `msa help [COMMAND]`
 
@@ -124,18 +123,7 @@ ALIASES
   $ msa ls
 ```
 
-_See code: [src/commands/list.ts](https://github.com/Gunmer/msa-js/blob/v1.2.1/src/commands/list.ts)_
-
-## `msa update [CHANNEL]`
-
-update the msa CLI
-
-```
-USAGE
-  $ msa update [CHANNEL]
-```
-
-_See code: [@oclif/plugin-update](https://github.com/oclif/plugin-update/blob/v1.3.9/src/commands/update.ts)_
+_See code: [src/commands/list.ts](https://github.com/Gunmer/msa-js/blob/v1.2.2/src/commands/list.ts)_
 
 ## `msa use SETTING`
 
@@ -155,5 +143,5 @@ ALIASES
   $ msa u
 ```
 
-_See code: [src/commands/use.ts](https://github.com/Gunmer/msa-js/blob/v1.2.1/src/commands/use.ts)_
+_See code: [src/commands/use.ts](https://github.com/Gunmer/msa-js/blob/v1.2.2/src/commands/use.ts)_
 <!-- commandsstop -->
