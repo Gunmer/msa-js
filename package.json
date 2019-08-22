@@ -1,7 +1,7 @@
 {
   "name": "msa-js",
   "description": "maven settings administrator CLI",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": "Cristiam Sosa @Gunmer",
   "bin": {
     "msa": "./bin/run"
