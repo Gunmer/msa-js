@@ -61,6 +61,10 @@
       "@oclif/plugin-help",
       "@oclif/plugin-warn-if-update-available"
     ],
+    "warn-if-update-available": {
+      "timeoutInDays": 1,
+      "message": "Update available <%= chalk.gray(config.version) %> → <%= chalk.yellow(latest) %>. Run <%= chalk.green('npm i -g msa-js') %> to update."
+    },
     "hooks": {
       "prerun": "./lib/hooks/prerun/connect-database",
       "finally": "./lib/hooks/finally/disconnect-database"
@@ -68,7 +72,7 @@
   },
   "repository": "Gunmer/msa-js",
   "scripts": {
-    "run": "./bin/run",
+    "execute": "./bin/run",
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "tslint -p test -t stylish",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
