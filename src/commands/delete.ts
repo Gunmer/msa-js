@@ -1,4 +1,5 @@
 import {flags} from '@oclif/command'
+import chalk from 'chalk'
 import {getCustomRepository} from 'typeorm'
 
 import Command from '../base'
@@ -25,6 +26,6 @@ export class Delete extends Command {
     this.fileService.deleteStoredSettings(setting)
     await this.settingRepository.remove(setting)
 
-    this.outputService.success(`The ${parse.args.setting} setting was deleted`)
+    this.outputService.success(`The ${chalk.bold.yellow(parse.args.setting)} setting was deleted`)
   }
 }

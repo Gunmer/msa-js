@@ -1,4 +1,5 @@
 import {flags} from '@oclif/command'
+import chalk from 'chalk'
 import {getCustomRepository} from 'typeorm'
 
 import Command from '../base'
@@ -20,7 +21,7 @@ export class List extends Command {
 
     settings.forEach(s => {
       if (s.isSelected()) {
-        this.log(` > ${s.name}`)
+        this.log(chalk.cyan(` > ${s.name}`))
       } else {
         this.log(`   ${s.name}`)
       }

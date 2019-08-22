@@ -1,4 +1,5 @@
 import {flags} from '@oclif/command'
+import chalk from 'chalk'
 import {getCustomRepository} from 'typeorm'
 
 import Command from '../base'
@@ -30,6 +31,6 @@ export class Add extends Command {
     this.fileService.createSetting(setting, parse.args.file)
     await this.settingRepository.save(setting)
 
-    this.outputService.success(`The ${setting.name} setting was created`)
+    this.outputService.success(`The ${chalk.bold.yellow(setting.name)} setting was created`)
   }
 }

@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 import ora = require('ora')
 
 export class OutputService {
@@ -17,19 +18,19 @@ export class OutputService {
   }
 
   success(message: string) {
-    this.spinner.succeed(message)
+    this.spinner.succeed(chalk.green(message))
   }
 
   info(message: string) {
-    this.spinner.info(message)
+    this.spinner.info(chalk.blue(message))
   }
 
   warning(message: string) {
-    this.spinner.warn(message)
+    this.spinner.warn(chalk.yellow(message))
   }
 
   fail(message: string) {
-    this.spinner.fail(message)
+    this.spinner.fail(chalk.red(message))
   }
 
   stopSpinner() {

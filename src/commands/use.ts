@@ -1,4 +1,5 @@
 import {flags} from '@oclif/command'
+import chalk from 'chalk'
 import {getCustomRepository} from 'typeorm'
 
 import Command from '../base'
@@ -36,6 +37,6 @@ export class Use extends Command {
     newSetting.select()
     await this.settingRepository.save(newSetting)
 
-    this.outputService.success(`You activate ${parse.args.setting} setting`)
+    this.outputService.success(`You activate ${chalk.bold.yellow(parse.args.setting)} setting`)
   }
 }
