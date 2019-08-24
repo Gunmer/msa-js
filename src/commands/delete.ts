@@ -11,9 +11,11 @@ export class Delete extends Command {
   static flags = {
     help: flags.help({char: 'h'}),
   }
-  static args = [
-    {name: 'setting', required: true, description: 'Select setting for delete'},
-  ]
+  static args = [{
+    name: 'setting',
+    required: false,
+    description: 'Select setting for delete'
+  }]
   static aliases = ['d']
 
   private readonly settingRepository = getCustomRepository(SettingRepository)
@@ -21,6 +23,11 @@ export class Delete extends Command {
 
   async run() {
     const parse = this.parse(Delete)
+
+    if (!parse.args.setting) {
+      const settings = await this.settingRepository.find()
+      parse.args.setting = await this.outputService.selectSetting('Choose the setting to be deleted', settings)
+    }
 
     const setting = await this.settingRepository.findOneByName(parse.args.setting)
     this.fileService.deleteStoredSettings(setting)

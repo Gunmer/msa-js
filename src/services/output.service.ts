@@ -1,5 +1,8 @@
 import chalk from 'chalk'
+import * as inquirer from 'inquirer'
 import ora = require('ora')
+
+import {Setting} from '../entities/setting'
 
 export class OutputService {
   constructor(private readonly spinner = ora({hideCursor: true, spinner: 'bouncingBall'})) {
@@ -35,6 +38,18 @@ export class OutputService {
 
   stopSpinner() {
     this.spinner.stop()
+  }
+
+  async selectSetting(question: string, settings: Setting[]) {
+    this.stopSpinner()
+    const prompt = await inquirer.prompt({
+      type: 'list',
+      name: 'setting',
+      message: question,
+      choices: settings.map(s => s.name)
+    })
+    this.startSpinner()
+    return prompt.setting
   }
 
 }

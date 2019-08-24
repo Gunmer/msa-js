@@ -10,7 +10,7 @@ export class Use extends Command {
   static description = 'Select the setting to use'
   static args = [{
     name: 'setting',
-    required: true,
+    required: false,
     description: 'Select setting for use'
   }]
   static flags = {
@@ -23,6 +23,11 @@ export class Use extends Command {
 
   async run() {
     const parse = this.parse(Use)
+
+    if (!parse.args.setting) {
+      const settings = await this.settingRepository.find()
+      parse.args.setting = await this.outputService.selectSetting('Choose the setting to be used', settings)
+    }
 
     const newSetting = await this.settingRepository.findOneByName(parse.args.setting)
     const oldSetting = await this.settingRepository.findSelected()
