@@ -1,7 +1,7 @@
 msa-js
 ======
 
-maven settings administrator
+Maven Settings Administrator is a CLI for help us to manage the settings.xml files
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/msa-js.svg)](https://npmjs.org/package/msa-js)
