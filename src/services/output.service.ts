@@ -1,11 +1,13 @@
 import chalk from 'chalk'
 import * as inquirer from 'inquirer'
-import ora = require('ora')
+import * as ora from 'ora'
 
 import {Setting} from '../entities/setting'
 
 export class OutputService {
-  constructor(private readonly spinner = ora({hideCursor: true, spinner: 'bouncingBall'})) {
+  constructor(
+    private readonly spinner = ora({hideCursor: true, spinner: 'bouncingBall'}),
+  ) {
   }
 
   startSpinner(message?: string) {
@@ -50,6 +52,18 @@ export class OutputService {
     })
     this.startSpinner()
     return prompt.setting
+  }
+
+  async askQuestion(question: string, def?: string) {
+    this.stopSpinner()
+    const output = await inquirer.prompt({
+      type: 'input',
+      message: question,
+      name: 'answer',
+      default: def
+    })
+    this.startSpinner()
+    return output.answer
   }
 
 }

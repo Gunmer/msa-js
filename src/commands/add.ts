@@ -1,5 +1,6 @@
 import {flags} from '@oclif/command'
 import chalk from 'chalk'
+import * as path from 'path'
 import {getCustomRepository} from 'typeorm'
 
 import Command from '../base'
@@ -13,8 +14,8 @@ export class Add extends Command {
     help: flags.help({char: 'h'}),
   }
   static args = [
-    {name: 'name', required: true, description: 'Name of setting'},
     {name: 'file', required: true, description: 'Path of setting file'},
+    {name: 'name', required: false, description: 'Name of setting'},
   ]
   static aliases = ['a']
 
@@ -23,6 +24,11 @@ export class Add extends Command {
 
   async run() {
     const parse = this.parse(Add)
+
+    if (!parse.args.name) {
+      const file = path.parse(parse.args.file).name
+      parse.args.name = await this.outputService.askQuestion('What is the name?', file)
+    }
 
     const setting = new Setting(parse.args.name)
 
