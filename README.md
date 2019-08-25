@@ -19,7 +19,7 @@ $ npm install -g msa-js
 $ msa COMMAND
 running command...
 $ msa (-v|--version|version)
-msa-js/1.2.3 darwin-x64 node-v12.7.0
+msa-js/1.3.0 darwin-x64 node-v12.7.0
 $ msa --help [COMMAND]
 USAGE
   $ msa COMMAND
@@ -28,24 +28,24 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`msa add NAME FILE`](#msa-add-name-file)
-* [`msa delete SETTING`](#msa-delete-setting)
+* [`msa add FILE [NAME]`](#msa-add-file-name)
+* [`msa delete [SETTING]`](#msa-delete-setting)
 * [`msa doctor`](#msa-doctor)
 * [`msa help [COMMAND]`](#msa-help-command)
 * [`msa list`](#msa-list)
-* [`msa use SETTING`](#msa-use-setting)
+* [`msa use [SETTING]`](#msa-use-setting)
 
-## `msa add NAME FILE`
+## `msa add FILE [NAME]`
 
 Add a new setting
 
 ```
 USAGE
-  $ msa add NAME FILE
+  $ msa add FILE [NAME]
 
 ARGUMENTS
-  NAME  Name of setting
   FILE  Path of setting file
+  NAME  Name of setting
 
 OPTIONS
   -h, --help  show CLI help
@@ -54,15 +54,15 @@ ALIASES
   $ msa a
 ```
 
-_See code: [src/commands/add.ts](https://github.com/Gunmer/msa-js/blob/v1.2.3/src/commands/add.ts)_
+_See code: [src/commands/add.ts](https://github.com/Gunmer/msa-js/blob/v1.3.0/src/commands/add.ts)_
 
-## `msa delete SETTING`
+## `msa delete [SETTING]`
 
 Delete a setting
 
 ```
 USAGE
-  $ msa delete SETTING
+  $ msa delete [SETTING]
 
 ARGUMENTS
   SETTING  Select setting for delete
@@ -74,7 +74,7 @@ ALIASES
   $ msa d
 ```
 
-_See code: [src/commands/delete.ts](https://github.com/Gunmer/msa-js/blob/v1.2.3/src/commands/delete.ts)_
+_See code: [src/commands/delete.ts](https://github.com/Gunmer/msa-js/blob/v1.3.0/src/commands/delete.ts)_
 
 ## `msa doctor`
 
@@ -89,7 +89,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/doctor.ts](https://github.com/Gunmer/msa-js/blob/v1.2.3/src/commands/doctor.ts)_
+_See code: [src/commands/doctor.ts](https://github.com/Gunmer/msa-js/blob/v1.3.0/src/commands/doctor.ts)_
 
 ## `msa help [COMMAND]`
 
@@ -123,15 +123,15 @@ ALIASES
   $ msa ls
 ```
 
-_See code: [src/commands/list.ts](https://github.com/Gunmer/msa-js/blob/v1.2.3/src/commands/list.ts)_
+_See code: [src/commands/list.ts](https://github.com/Gunmer/msa-js/blob/v1.3.0/src/commands/list.ts)_
 
-## `msa use SETTING`
+## `msa use [SETTING]`
 
 Select the setting to use
 
 ```
 USAGE
-  $ msa use SETTING
+  $ msa use [SETTING]
 
 ARGUMENTS
   SETTING  Select setting for use
@@ -143,5 +143,5 @@ ALIASES
   $ msa u
 ```
 
-_See code: [src/commands/use.ts](https://github.com/Gunmer/msa-js/blob/v1.2.3/src/commands/use.ts)_
+_See code: [src/commands/use.ts](https://github.com/Gunmer/msa-js/blob/v1.3.0/src/commands/use.ts)_
 <!-- commandsstop -->
