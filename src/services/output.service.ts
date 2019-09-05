@@ -66,4 +66,8 @@ export class OutputService {
     return output.answer
   }
 
+  // noinspection JSMethodCanBeStatic
+  print(message: string) {
+    process.stdout.write(`${message}\n`)
+  }
 }
