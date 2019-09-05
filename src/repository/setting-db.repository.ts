@@ -5,7 +5,7 @@ import {SettingAlreadyExistError} from '../errors/setting-already-exist.error'
 import {SettingNotFoundError} from '../errors/setting-not-found.error'
 
 @EntityRepository(Setting)
-export class SettingRepository extends Repository<Setting> {
+export class SettingDbRepository extends Repository<Setting> {
   async findOneByName(settingName: string) {
     try {
       return await this.findOneOrFail({name: settingName})

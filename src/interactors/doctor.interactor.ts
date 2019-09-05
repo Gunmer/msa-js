@@ -1,5 +1,5 @@
 import {Setting} from '../entities/setting'
-import {SettingRepository} from '../repository/setting.repository'
+import {SettingDbRepository} from '../repository/setting-db.repository'
 import {FileService} from '../services/file.service'
 import {OutputService} from '../services/output.service'
 
@@ -9,7 +9,7 @@ export class DoctorInteractor extends Interactor<boolean, void> {
   constructor(
     private readonly outputService: OutputService,
     private readonly fileService: FileService,
-    private readonly settingRepository: SettingRepository
+    private readonly settingRepository: SettingDbRepository
   ) {
     super()
   }

@@ -4,7 +4,7 @@ import {getCustomRepository} from 'typeorm'
 import Command from '../base'
 import {DoctorInteractor} from '../interactors/doctor.interactor'
 import {getFileService} from '../msa-js'
-import {SettingRepository} from '../repository/setting.repository'
+import {SettingDbRepository} from '../repository/setting-db.repository'
 
 export class Doctor extends Command {
   static description = 'Tool for diagnostic and fix some issues'
@@ -13,7 +13,7 @@ export class Doctor extends Command {
     fix: flags.boolean({char: 'f'})
   }
 
-  private readonly settingRepository = getCustomRepository(SettingRepository)
+  private readonly settingRepository = getCustomRepository(SettingDbRepository)
   private readonly fileService = getFileService(this.config.home)
   private readonly interactor = new DoctorInteractor(this.outputService, this.fileService, this.settingRepository)
 

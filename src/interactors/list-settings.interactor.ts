@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-import {SettingRepository} from '../repository/setting.repository'
+import {SettingDbRepository} from '../repository/setting-db.repository'
 import {OutputService} from '../services/output.service'
 
 import {Interactor} from './interactor'
@@ -8,7 +8,7 @@ import {Interactor} from './interactor'
 export class ListSettingsInteractor extends Interactor<void, void> {
   constructor(
     private readonly outputService: OutputService,
-    private readonly settingRepository: SettingRepository
+    private readonly settingRepository: SettingDbRepository
   ) {
     super()
   }

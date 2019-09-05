@@ -4,7 +4,7 @@ import {getCustomRepository} from 'typeorm'
 import Command from '../base'
 import {UseSettingInteractor} from '../interactors/use-setting.interactor'
 import {getFileService} from '../msa-js'
-import {SettingRepository} from '../repository/setting.repository'
+import {SettingDbRepository} from '../repository/setting-db.repository'
 
 export class Use extends Command {
   static description = 'Select the setting to use'
@@ -18,7 +18,7 @@ export class Use extends Command {
   }
   static aliases = ['u']
 
-  private readonly settingRepository = getCustomRepository(SettingRepository)
+  private readonly settingRepository = getCustomRepository(SettingDbRepository)
   private readonly fileService = getFileService(this.config.home)
   private readonly interactor = new UseSettingInteractor(this.outputService, this.fileService, this.settingRepository)
 

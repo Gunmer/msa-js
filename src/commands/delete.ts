@@ -4,7 +4,7 @@ import {getCustomRepository} from 'typeorm'
 import Command from '../base'
 import {DeleteSettingInteractor} from '../interactors/delete-setting.interactor'
 import {getFileService} from '../msa-js'
-import {SettingRepository} from '../repository/setting.repository'
+import {SettingDbRepository} from '../repository/setting-db.repository'
 
 export class Delete extends Command {
   static description = 'Delete a setting'
@@ -18,7 +18,7 @@ export class Delete extends Command {
   }]
   static aliases = ['d']
 
-  private readonly settingRepository = getCustomRepository(SettingRepository)
+  private readonly settingRepository = getCustomRepository(SettingDbRepository)
   private readonly fileService = getFileService(this.config.home)
   private readonly interactor = new DeleteSettingInteractor(this.outputService, this.fileService, this.settingRepository)
 
