@@ -4,8 +4,9 @@ import {Setting} from '../entities/setting'
 import {CanNotDeleteDefaultError} from '../errors/can-not-delete-default.error'
 import {CanNotDeleteSelectedError} from '../errors/can-not-delete-selected.error'
 import {FileNotFoundError} from '../errors/file-not-found.error'
+import {FileService} from '../interactors/services/file.service'
 
-export class FileService {
+export class FsFileService implements FileService {
   constructor(
     private readonly home: string,
     private readonly settingPath = `${home}/.m2/settings.xml`,

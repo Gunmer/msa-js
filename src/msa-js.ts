@@ -1,4 +1,4 @@
-import {FileService} from './services/file.service'
+import {FsFileService} from './services/fs-file.service'
 import {OutputService} from './services/output.service'
 
 let outputService: OutputService
@@ -9,10 +9,10 @@ export function getOutputService(): OutputService {
   return outputService
 }
 
-let fileService: FileService
+let fileService: FsFileService
 export function getFileService(homePath: string) {
   if (!fileService) {
-    fileService = new FileService(homePath)
+    fileService = new FsFileService(homePath)
   }
   return fileService
 }
