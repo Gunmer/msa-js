@@ -1,21 +1,21 @@
 import {Setting} from '../entities/setting'
-import {SettingDbRepository} from '../repository/setting-db.repository'
 import {FileService} from '../services/file.service'
 import {OutputService} from '../services/output.service'
 
 import {Interactor} from './interactor'
+import {SettingRepository} from './repositories/setting.repository'
 
 export class DoctorInteractor extends Interactor<boolean, void> {
   constructor(
     private readonly outputService: OutputService,
     private readonly fileService: FileService,
-    private readonly settingRepository: SettingDbRepository
+    private readonly settingRepository: SettingRepository
   ) {
     super()
   }
 
   protected async _execute(fix: boolean): Promise<void> {
-    const settings = await this.settingRepository.find()
+    const settings = await this.settingRepository.findAll()
     const files = this.fileService.getAllSettingFiles()
 
     const selectedSettings = settings.filter(s => s.isSelected())
@@ -34,8 +34,8 @@ export class DoctorInteractor extends Interactor<boolean, void> {
       newSettings.push(Setting.DEFAULT)
 
       this.fileService.deleteSelectedSetting()
-      await this.settingRepository.clear()
-      await this.settingRepository.save(newSettings)
+      await this.settingRepository.deleteAll()
+      await this.settingRepository.saveSettings(newSettings)
 
       this.outputService.info('Data base has restored')
     }
