@@ -1,10 +1,11 @@
+import {OutputService} from './interactors/services/output.service'
+import {CustomOutputService} from './services/custom-output.service'
 import {FsFileService} from './services/fs-file.service'
-import {OutputService} from './services/output.service'
 
-let outputService: OutputService
+let outputService: CustomOutputService
 export function getOutputService(): OutputService {
   if (!outputService) {
-    outputService = new OutputService()
+    outputService = new CustomOutputService()
   }
   return outputService
 }

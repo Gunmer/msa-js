@@ -1,9 +1,8 @@
 import chalk from 'chalk'
 
-import {OutputService} from '../services/output.service'
-
 import {Interactor} from './interactor'
 import {SettingRepository} from './repositories/setting.repository'
+import {OutputService} from './services/output.service'
 
 export class ListSettingsInteractor extends Interactor<void, void> {
   constructor(

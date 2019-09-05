@@ -1,9 +1,9 @@
 import {Setting} from '../entities/setting'
-import {OutputService} from '../services/output.service'
 
 import {Interactor} from './interactor'
 import {SettingRepository} from './repositories/setting.repository'
 import {FileService} from './services/file.service'
+import {OutputService} from './services/output.service'
 
 export class DoctorInteractor extends Interactor<boolean, void> {
   constructor(

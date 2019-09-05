@@ -3,8 +3,9 @@ import * as inquirer from 'inquirer'
 import * as ora from 'ora'
 
 import {Setting} from '../entities/setting'
+import {OutputService} from '../interactors/services/output.service'
 
-export class OutputService {
+export class CustomOutputService implements OutputService {
   constructor(
     private readonly spinner = ora({hideCursor: true, spinner: 'bouncingBall'}),
   ) {
