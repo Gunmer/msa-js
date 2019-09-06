@@ -1,8 +1,9 @@
 import chalk from 'chalk'
 
+import {SettingRepository} from '../repositories/setting.repository'
+import {OutputService} from '../services/output.service'
+
 import {Interactor} from './interactor'
-import {SettingRepository} from './repositories/setting.repository'
-import {OutputService} from './services/output.service'
 
 export class ListSettingsInteractor extends Interactor<void, void> {
   constructor(
@@ -18,7 +19,7 @@ export class ListSettingsInteractor extends Interactor<void, void> {
     this.outputService.stopSpinner()
 
     settings.forEach(s => {
-      if (s.isSelected()) {
+      if (s.isSelected) {
         this.outputService.print(chalk.cyan(` > ${s.name}`))
       } else {
         this.outputService.print(`   ${s.name}`)

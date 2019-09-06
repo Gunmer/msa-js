@@ -2,8 +2,8 @@ import chalk from 'chalk'
 import * as inquirer from 'inquirer'
 import * as ora from 'ora'
 
-import {Setting} from '../entities/setting'
-import {OutputService} from '../interactors/services/output.service'
+import {OutputService} from '../business/services/output.service'
+import {Setting} from '../business/setting'
 
 export class CustomOutputService implements OutputService {
   constructor(

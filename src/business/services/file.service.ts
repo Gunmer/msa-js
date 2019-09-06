@@ -1,4 +1,4 @@
-import {Setting} from '../../entities/setting'
+import {Setting} from '../setting'
 
 export interface FileService {
   createSetting(newSetting: Setting, pathFile: string): void

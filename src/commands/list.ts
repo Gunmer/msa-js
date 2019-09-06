@@ -1,9 +1,10 @@
 import {flags} from '@oclif/command'
 import {getCustomRepository} from 'typeorm'
 
-import Command from '../base'
-import {ListSettingsInteractor} from '../interactors/list-settings.interactor'
-import {SettingDbRepository} from '../repository/setting-db.repository'
+import {ListSettingsInteractor} from '../business/interactors/list-settings.interactor'
+import {SettingDbRepository} from '../database/setting-db.repository'
+
+import Command from './base'
 
 export class List extends Command {
   static description = 'Show a list of settings'

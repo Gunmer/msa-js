@@ -1,10 +1,11 @@
 import {flags} from '@oclif/command'
 import {getCustomRepository} from 'typeorm'
 
-import Command from '../base'
-import {DeleteSettingInteractor} from '../interactors/delete-setting.interactor'
+import {DeleteSettingInteractor} from '../business/interactors/delete-setting.interactor'
+import {SettingDbRepository} from '../database/setting-db.repository'
 import {getFileService} from '../msa-js'
-import {SettingDbRepository} from '../repository/setting-db.repository'
+
+import Command from './base'
 
 export class Delete extends Command {
   static description = 'Delete a setting'

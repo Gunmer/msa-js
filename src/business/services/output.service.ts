@@ -1,4 +1,4 @@
-import {Setting} from '../../entities/setting'
+import {Setting} from '../setting'
 
 export interface OutputService {
   startSpinner(message?: string): void

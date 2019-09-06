@@ -1,4 +1,4 @@
-import {Setting} from '../../entities/setting'
+import {Setting} from '../setting'
 
 export interface SettingRepository {
   saveSetting(setting: Setting): Promise<Setting>
@@ -12,8 +12,6 @@ export interface SettingRepository {
   findSelected(): Promise<Setting>
 
   checkIfExistByName(settingName: string): Promise<boolean>
-
-  addDefault(): Promise<Setting>
 
   deleteSetting(setting: Setting): Promise<Setting>
 

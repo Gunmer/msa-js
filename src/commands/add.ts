@@ -1,10 +1,11 @@
 import {flags} from '@oclif/command'
 import {getCustomRepository} from 'typeorm'
 
-import Command from '../base'
-import {AddParam, AddSettingInteractor} from '../interactors/add-setting.interactor'
-import {getFileService} from '../msa-js'
-import {SettingDbRepository} from '../repository/setting-db.repository'
+import {AddParam, AddSettingInteractor} from '../business/interactors/add-setting.interactor'
+import {SettingDbRepository} from '../database/setting-db.repository'
+import {getFileService, getSettingService} from '../msa-js'
+
+import Command from './base'
 
 export class Add extends Command {
   static description = 'Add a new setting'
@@ -19,7 +20,8 @@ export class Add extends Command {
 
   private readonly settingRepository = getCustomRepository(SettingDbRepository)
   private readonly fileService = getFileService(this.config.home)
-  private readonly interactor = new AddSettingInteractor(this.outputService, this.fileService, this.settingRepository)
+  private readonly settingService = getSettingService()
+  private readonly interactor = new AddSettingInteractor(this.outputService, this.fileService, this.settingRepository, this.settingService)
 
   async run() {
     const parse = this.parse(Add)

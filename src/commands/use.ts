@@ -1,10 +1,11 @@
 import {flags} from '@oclif/command'
 import {getCustomRepository} from 'typeorm'
 
-import Command from '../base'
-import {UseSettingInteractor} from '../interactors/use-setting.interactor'
+import {UseSettingInteractor} from '../business/interactors/use-setting.interactor'
+import {SettingDbRepository} from '../database/setting-db.repository'
 import {getFileService} from '../msa-js'
-import {SettingDbRepository} from '../repository/setting-db.repository'
+
+import Command from './base'
 
 export class Use extends Command {
   static description = 'Select the setting to use'

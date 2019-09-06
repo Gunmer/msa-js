@@ -1,7 +1,7 @@
 import Command from '@oclif/command'
 import {CLIError} from '@oclif/errors'
 
-import {getOutputService} from './msa-js'
+import {getOutputService} from '../msa-js'
 
 export default abstract class extends Command {
   protected readonly outputService = getOutputService()

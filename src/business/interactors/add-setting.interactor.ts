@@ -1,25 +1,26 @@
 import chalk from 'chalk'
 import * as path from 'path'
 
-import {Setting} from '../entities/setting'
+import {SettingRepository} from '../repositories/setting.repository'
+import {FileService} from '../services/file.service'
+import {OutputService} from '../services/output.service'
+import {SettingService} from '../services/setting.service'
 
 import {Interactor} from './interactor'
-import {SettingRepository} from './repositories/setting.repository'
-import {FileService} from './services/file.service'
-import {OutputService} from './services/output.service'
 
 export class AddSettingInteractor extends Interactor<AddParam, void> {
   constructor(
     private readonly outputService: OutputService,
     private readonly fileService: FileService,
-    private readonly settingRepository: SettingRepository
+    private readonly settingRepository: SettingRepository,
+    private readonly settingService: SettingService
   ) {
     super()
   }
 
   async _execute(param: AddParam): Promise<void> {
     const name = await this.getName(param)
-    const setting = new Setting(name)
+    const setting = this.settingService.getSetting(name)
 
     await this.settingRepository.checkIfExistByName(name)
 

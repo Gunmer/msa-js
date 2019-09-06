@@ -1,10 +1,11 @@
 import * as fs from 'fs'
 
-import {Setting} from '../entities/setting'
-import {CanNotDeleteDefaultError} from '../errors/can-not-delete-default.error'
-import {CanNotDeleteSelectedError} from '../errors/can-not-delete-selected.error'
-import {FileNotFoundError} from '../errors/file-not-found.error'
-import {FileService} from '../interactors/services/file.service'
+import {FileService} from '../business/services/file.service'
+import {Setting} from '../business/setting'
+
+import {CanNotDeleteDefaultError} from './errors/can-not-delete-default.error'
+import {CanNotDeleteSelectedError} from './errors/can-not-delete-selected.error'
+import {FileNotFoundError} from './errors/file-not-found.error'
 
 export class FsFileService implements FileService {
   constructor(
@@ -47,7 +48,7 @@ export class FsFileService implements FileService {
   }
 
   deleteStoredSettings(setting: Setting) {
-    if (setting.isSelected()) {
+    if (setting.isSelected) {
       throw new CanNotDeleteSelectedError()
     }
     if (setting.isDefault()) {

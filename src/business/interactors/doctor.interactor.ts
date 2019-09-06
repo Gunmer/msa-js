@@ -1,15 +1,17 @@
-import {Setting} from '../entities/setting'
+import {SettingRepository} from '../repositories/setting.repository'
+import {FileService} from '../services/file.service'
+import {OutputService} from '../services/output.service'
+import {SettingService} from '../services/setting.service'
+import {Setting} from '../setting'
 
 import {Interactor} from './interactor'
-import {SettingRepository} from './repositories/setting.repository'
-import {FileService} from './services/file.service'
-import {OutputService} from './services/output.service'
 
 export class DoctorInteractor extends Interactor<boolean, void> {
   constructor(
     private readonly outputService: OutputService,
     private readonly fileService: FileService,
-    private readonly settingRepository: SettingRepository
+    private readonly settingRepository: SettingRepository,
+    private readonly settingService: SettingService
   ) {
     super()
   }
@@ -18,7 +20,7 @@ export class DoctorInteractor extends Interactor<boolean, void> {
     const settings = await this.settingRepository.findAll()
     const files = this.fileService.getAllSettingFiles()
 
-    const selectedSettings = settings.filter(s => s.isSelected())
+    const selectedSettings = settings.filter(s => s.isSelected)
     const hasOnlyOneSettingSelected = selectedSettings.length <= 1
     if (!hasOnlyOneSettingSelected) {
       this.outputService.warning('There is more than one settings selected')
@@ -30,8 +32,9 @@ export class DoctorInteractor extends Interactor<boolean, void> {
     }
 
     if (fix) {
-      const newSettings = files.map(this.toSetting)
-      newSettings.push(Setting.DEFAULT)
+      const newSettings = files.map(this.settingService.getSettingByFilePath)
+      const defaultSetting = this.settingService.getDefault()
+      newSettings.push(defaultSetting)
 
       this.fileService.deleteSelectedSetting()
       await this.settingRepository.deleteAll()
@@ -52,12 +55,6 @@ export class DoctorInteractor extends Interactor<boolean, void> {
     }
 
     return files.includes(setting.file)
-  }
-
-  // noinspection JSMethodCanBeStatic
-  private toSetting(file: string) {
-    const fileParts = file.split('.')
-    return new Setting(fileParts[0])
   }
 
 }
