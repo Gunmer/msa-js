@@ -1,9 +1,8 @@
 import {flags} from '@oclif/command'
-import {getCustomRepository} from 'typeorm'
+import 'reflect-metadata'
 
 import {AddParam, AddSettingInteractor} from '../business/interactors/add-setting.interactor'
-import {SettingDbRepository} from '../database/setting-db.repository'
-import {getFileService, getSettingService} from '../msa-js'
+import injector from '../injector'
 
 import Command from './base'
 
@@ -18,10 +17,7 @@ export class Add extends Command {
   ]
   static aliases = ['a']
 
-  private readonly settingRepository = getCustomRepository(SettingDbRepository)
-  private readonly fileService = getFileService(this.config.home)
-  private readonly settingService = getSettingService()
-  private readonly interactor = new AddSettingInteractor(this.outputService, this.fileService, this.settingRepository, this.settingService)
+  private readonly interactor = injector.get<AddSettingInteractor>('AddSettingInteractor')
 
   async run() {
     const parse = this.parse(Add)

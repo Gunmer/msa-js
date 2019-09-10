@@ -1,4 +1,6 @@
 import * as fs from 'fs'
+import {inject, injectable} from 'inversify'
+import * as path from 'path'
 
 import {FileService} from '../business/services/file.service'
 import {Setting} from '../business/setting'
@@ -7,8 +9,10 @@ import {CanNotDeleteDefaultError} from './errors/can-not-delete-default.error'
 import {CanNotDeleteSelectedError} from './errors/can-not-delete-selected.error'
 import {FileNotFoundError} from './errors/file-not-found.error'
 
+@injectable()
 export class FsFileService implements FileService {
   constructor(
+    @inject('USER_HOME')
     private readonly home: string,
     private readonly settingPath = `${home}/.m2/settings.xml`,
     private readonly msaHome = `${home}/.m2/msa`
@@ -61,6 +65,6 @@ export class FsFileService implements FileService {
 
   getAllSettingFiles() {
     return fs.readdirSync(this.msaHome)
-      .filter(file => file !== 'msa.db')
+      .filter(file => path.parse(file).ext === '.xml')
   }
 }

@@ -1,13 +1,15 @@
 import {Hook} from '@oclif/config'
 import {Connection, getConnectionManager} from 'typeorm'
 
+import {OutputService} from '../../business/services/output.service'
 import {SettingEntity} from '../../database/entities/setting.entity'
 import {Migration1566161944888} from '../../database/migrations/1566161944888-Migration'
 import {Migration1566162184523} from '../../database/migrations/1566162184523-Migration'
-import {getOutputService} from '../../msa-js'
+import injector from '../../injector'
 
 const hook: Hook<'prerun'> = async function () {
-  getOutputService().startSpinner()
+  injector.bind('USER_HOME').toConstantValue(this.config.home)
+  injector.get<OutputService>('OutputService').startSpinner()
 
   const connectionManager = getConnectionManager()
   let connection: Connection

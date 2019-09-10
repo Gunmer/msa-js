@@ -1,8 +1,10 @@
+import {injectable} from 'inversify'
 import * as path from 'path'
 
 import {SettingService} from '../business/services/setting.service'
 import {Setting} from '../business/setting'
 
+@injectable()
 export class FactorySettingService implements SettingService {
   getDefault(): Setting {
     return new Setting('default', '', false)

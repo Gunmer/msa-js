@@ -15,6 +15,7 @@
     "@oclif/plugin-warn-if-update-available": "^1.7.0",
     "chalk": "^2.4.2",
     "inquirer": "^7.0.0",
+    "inversify": "^5.0.1",
     "ora": "^3.4.0",
     "reflect-metadata": "^0.1.13",
     "sqlite3": "^4.1.0",

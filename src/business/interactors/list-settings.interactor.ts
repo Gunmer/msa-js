@@ -1,19 +1,22 @@
 import chalk from 'chalk'
+import {inject, injectable} from 'inversify'
 
 import {SettingRepository} from '../repositories/setting.repository'
 import {OutputService} from '../services/output.service'
 
 import {Interactor} from './interactor'
 
-export class ListSettingsInteractor extends Interactor<void, void> {
+@injectable()
+export class ListSettingsInteractor implements Interactor<void, void> {
   constructor(
+    @inject('OutputService')
     private readonly outputService: OutputService,
-    private readonly settingRepository: SettingRepository
+    @inject('SettingRepository')
+    private readonly settingRepository: SettingRepository,
   ) {
-    super()
   }
 
-  protected async _execute(): Promise<void> {
+  async execute(): Promise<void> {
     const settings = await this.settingRepository.findAll()
 
     this.outputService.stopSpinner()

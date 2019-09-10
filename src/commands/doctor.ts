@@ -1,9 +1,8 @@
 import {flags} from '@oclif/command'
-import {getCustomRepository} from 'typeorm'
+import 'reflect-metadata'
 
 import {DoctorInteractor} from '../business/interactors/doctor.interactor'
-import {SettingDbRepository} from '../database/setting-db.repository'
-import {getFileService, getSettingService} from '../msa-js'
+import injector from '../injector'
 
 import Command from './base'
 
@@ -14,10 +13,7 @@ export class Doctor extends Command {
     fix: flags.boolean({char: 'f'})
   }
 
-  private readonly settingRepository = getCustomRepository(SettingDbRepository)
-  private readonly fileService = getFileService(this.config.home)
-  private readonly settingService = getSettingService()
-  private readonly interactor = new DoctorInteractor(this.outputService, this.fileService, this.settingRepository, this.settingService)
+  private readonly interactor = injector.get<DoctorInteractor>('DoctorInteractor')
 
   async run() {
     const parse = this.parse(Doctor)

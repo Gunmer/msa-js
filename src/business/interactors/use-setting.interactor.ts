@@ -1,4 +1,5 @@
 import chalk from 'chalk'
+import {inject, injectable} from 'inversify'
 
 import {SettingRepository} from '../repositories/setting.repository'
 import {FileService} from '../services/file.service'
@@ -6,16 +7,19 @@ import {OutputService} from '../services/output.service'
 
 import {Interactor} from './interactor'
 
-export class UseSettingInteractor extends Interactor<string, void> {
+@injectable()
+export class UseSettingInteractor implements Interactor<string, void> {
   constructor(
+    @inject('OutputService')
     private readonly outputService: OutputService,
+    @inject('FileService')
     private readonly fileService: FileService,
+    @inject('SettingRepository')
     private readonly settingRepository: SettingRepository
   ) {
-    super()
   }
 
-  protected async _execute(setting: string): Promise<void> {
+  async execute(setting: string): Promise<void> {
     if (!setting) {
       const settings = await this.settingRepository.findAll()
       setting = await this.outputService.selectSetting('Choose the setting to be used', settings)

@@ -1,10 +1,12 @@
 import chalk from 'chalk'
 import * as inquirer from 'inquirer'
+import {injectable} from 'inversify'
 import * as ora from 'ora'
 
 import {OutputService} from '../business/services/output.service'
 import {Setting} from '../business/setting'
 
+@injectable()
 export class CustomOutputService implements OutputService {
   constructor(
     private readonly spinner = ora({hideCursor: true, spinner: 'bouncingBall'}),
@@ -67,7 +69,6 @@ export class CustomOutputService implements OutputService {
     return output.answer
   }
 
-  // noinspection JSMethodCanBeStatic
   print(message: string) {
     process.stdout.write(`${message}\n`)
   }

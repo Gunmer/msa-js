@@ -1,9 +1,8 @@
 import {flags} from '@oclif/command'
-import {getCustomRepository} from 'typeorm'
+import 'reflect-metadata'
 
 import {DeleteSettingInteractor} from '../business/interactors/delete-setting.interactor'
-import {SettingDbRepository} from '../database/setting-db.repository'
-import {getFileService} from '../msa-js'
+import injector from '../injector'
 
 import Command from './base'
 
@@ -19,9 +18,7 @@ export class Delete extends Command {
   }]
   static aliases = ['d']
 
-  private readonly settingRepository = getCustomRepository(SettingDbRepository)
-  private readonly fileService = getFileService(this.config.home)
-  private readonly interactor = new DeleteSettingInteractor(this.outputService, this.fileService, this.settingRepository)
+  private readonly interactor = injector.get<DeleteSettingInteractor>('DeleteSettingInteractor')
 
   async run() {
     const parse = this.parse(Delete)
