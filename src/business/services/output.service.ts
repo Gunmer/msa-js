@@ -3,8 +3,6 @@ import {Setting} from '../setting'
 export interface OutputService {
   startSpinner(message?: string): void
 
-  updateSpinner(message: string): void
-
   success(message: string): void
 
   info(message: string): void

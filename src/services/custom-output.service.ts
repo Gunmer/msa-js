@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 import * as inquirer from 'inquirer'
-import {injectable} from 'inversify'
+import {inject, injectable} from 'inversify'
 import * as ora from 'ora'
 
 import {OutputService} from '../business/services/output.service'
@@ -9,7 +9,8 @@ import {Setting} from '../business/setting'
 @injectable()
 export class CustomOutputService implements OutputService {
   constructor(
-    private readonly spinner = ora({hideCursor: true, spinner: 'bouncingBall'}),
+    @inject('ora')
+    private readonly spinner: ora.Ora,
   ) {
   }
 
@@ -19,10 +20,6 @@ export class CustomOutputService implements OutputService {
     } else {
       this.spinner.text = message || ''
     }
-  }
-
-  updateSpinner(message: string) {
-    this.spinner.text = message
   }
 
   success(message: string) {
