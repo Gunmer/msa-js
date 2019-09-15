@@ -1,0 +1,16 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: npm install
+      run: Install dependencies
+    - name: Build and test
+      run: npm clean-install
