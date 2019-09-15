@@ -1,10 +1,11 @@
 import Command from '@oclif/command'
 import {CLIError} from '@oclif/errors'
 
-import {getOutputService} from './msa-js'
+import {OutputService} from '../business/services/output.service'
+import injector from '../injector'
 
 export default abstract class extends Command {
-  protected readonly outputService = getOutputService()
+  protected readonly outputService = injector.get<OutputService>('OutputService')
 
   async catch(err: any) {
     if (err instanceof CLIError) {

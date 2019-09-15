@@ -1,10 +1,10 @@
 import {flags} from '@oclif/command'
-import chalk from 'chalk'
-import {getCustomRepository} from 'typeorm'
+import 'reflect-metadata'
 
-import Command from '../base'
-import {getFileService} from '../msa-js'
-import {SettingRepository} from '../repository/setting.repository'
+import {DeleteSettingInteractor} from '../business/interactors/delete-setting.interactor'
+import injector from '../injector'
+
+import Command from './base'
 
 export class Delete extends Command {
   static description = 'Delete a setting'
@@ -18,21 +18,10 @@ export class Delete extends Command {
   }]
   static aliases = ['d']
 
-  private readonly settingRepository = getCustomRepository(SettingRepository)
-  private readonly fileService = getFileService(this.config.home)
+  private readonly interactor = injector.get<DeleteSettingInteractor>('DeleteSettingInteractor')
 
   async run() {
     const parse = this.parse(Delete)
-
-    if (!parse.args.setting) {
-      const settings = await this.settingRepository.find()
-      parse.args.setting = await this.outputService.selectSetting('Choose the setting to be deleted', settings)
-    }
-
-    const setting = await this.settingRepository.findOneByName(parse.args.setting)
-    this.fileService.deleteStoredSettings(setting)
-    await this.settingRepository.remove(setting)
-
-    this.outputService.success(`The ${chalk.bold.yellow(parse.args.setting)} setting was deleted`)
+    await this.interactor.execute(parse.args.setting)
   }
 }
